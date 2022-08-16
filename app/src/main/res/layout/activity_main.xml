@@ -11,6 +11,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/baumans"
         android:text="Rm Blog App"
+        android:textSize="35sp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
