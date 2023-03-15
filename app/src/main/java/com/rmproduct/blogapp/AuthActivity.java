@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.rmproduct.blogapp.Fragment.LoginFragment;
+import com.rmproduct.blogapp.Fragment.SignupFragment;
 
 public class AuthActivity extends AppCompatActivity {
 

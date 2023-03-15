@@ -4,14 +4,14 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">#6DBDFD</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
     <style name="AppTheme.BottomAppbar" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">#6DBDFD</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
@@ -28,7 +28,7 @@
         <color name="colorLightGrey">#999999</color>-->
 
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryVariant">#61B8FF</item>
         <item name="colorOnPrimary">@color/colorWhite</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/colorLightGrey</item>
@@ -37,5 +37,13 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+    </style>
+
+
+    <style name="TextLabel" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="android:textColorHint">@color/colorGrey</item>
+        <item name="android:textSize">20sp</item>
+        <item name="colorControlNormal">#00000000</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
     </style>
 </resources>
