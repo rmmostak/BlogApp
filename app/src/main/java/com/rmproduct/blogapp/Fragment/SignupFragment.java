@@ -1,6 +1,7 @@
 package com.rmproduct.blogapp.Fragment;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -20,8 +21,10 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputEditText;
-import com.rmproduct.blogapp.Constant;
 import com.rmproduct.blogapp.R;
+import com.rmproduct.blogapp.UserInfo;
+import com.rmproduct.blogapp.common.Constant;
+import com.rmproduct.blogapp.common.LocalStorage;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,6 +37,7 @@ public class SignupFragment extends Fragment {
     private TextInputEditText emailIn, passwordIn, cPasswordIn;
     private Button login, signup;
     private ProgressDialog dialog;
+    private LocalStorage localStorage;
 
     public SignupFragment() {
     }
@@ -48,6 +52,7 @@ public class SignupFragment extends Fragment {
         cPasswordIn = view.findViewById(R.id.cPasswords);
         login = view.findViewById(R.id.logins);
         signup = view.findViewById(R.id.signups);
+        localStorage = new LocalStorage(getActivity());
         dialog = new ProgressDialog(getActivity());
         dialog.setCancelable(true);
         dialog.setTitle("Loading...");
@@ -101,11 +106,16 @@ public class SignupFragment extends Fragment {
             try {
                 JSONObject object = new JSONObject(response);
                 if (object.getBoolean("success")) {
-                    dialog.dismiss();
                     JSONObject user = object.getJSONObject("user");
+                    localStorage.setName(user.getString("name"));
+                    localStorage.setLastname(user.getString("lastname"));
+                    localStorage.setPhoto(user.getString("photo"));
+                    localStorage.setToken(object.getString("token"));
+                    localStorage.setLogin(true);
+                    dialog.dismiss();
                     Log.d("SignupFrag", "JSONObject Called.");
                     Toast.makeText(getActivity(), "Registration success! Login now.", Toast.LENGTH_LONG).show();
-                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new LoginFragment()).commit();
+                    startActivity(new Intent(getActivity(), UserInfo.class));
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

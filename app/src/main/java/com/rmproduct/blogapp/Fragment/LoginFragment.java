@@ -21,9 +21,10 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputEditText;
-import com.rmproduct.blogapp.Constant;
+import com.rmproduct.blogapp.HomeActivity;
 import com.rmproduct.blogapp.R;
 import com.rmproduct.blogapp.UserInfo;
+import com.rmproduct.blogapp.common.Constant;
 import com.rmproduct.blogapp.common.LocalStorage;
 
 import org.json.JSONException;
@@ -45,6 +46,12 @@ public class LoginFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        localStorage = new LocalStorage(getActivity());
+        if (localStorage.getLogin()) {
+            startActivity(new Intent(getContext(), HomeActivity.class));
+        }
+
         view = inflater.inflate(R.layout.login_fragment, container, false);
 
         emailIn = view.findViewById(R.id.email);
@@ -54,7 +61,6 @@ public class LoginFragment extends Fragment {
         dialog = new ProgressDialog(getActivity());
         dialog.setCancelable(true);
         dialog.setTitle("Loading...");
-        localStorage = new LocalStorage(getActivity());
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,7 +98,6 @@ public class LoginFragment extends Fragment {
 
     private void loginHere(String email, String password) {
         StringRequest request = new StringRequest(Request.Method.POST, Constant.LOGIN, response -> {
-
             try {
                 JSONObject object = new JSONObject(response);
                 if (object.getBoolean("success")) {
@@ -100,10 +105,14 @@ public class LoginFragment extends Fragment {
                     localStorage.setName(user.getString("name"));
                     localStorage.setLastname(user.getString("lastname"));
                     localStorage.setPhoto(user.getString("photo"));
-                    localStorage.setToken(user.getString("token"));
+                    localStorage.setToken(object.getString("token"));
                     localStorage.setLogin(true);
                     dialog.dismiss();
-                    startActivity(new Intent(getContext(), UserInfo.class));
+                    if (!TextUtils.isEmpty(user.getString("name"))) {
+                        startActivity(new Intent(getContext(), HomeActivity.class));
+                    } else {
+                        startActivity(new Intent(getContext(), UserInfo.class));
+                    }
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
