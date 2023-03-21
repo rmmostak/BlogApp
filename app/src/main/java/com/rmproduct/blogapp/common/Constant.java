@@ -6,4 +6,6 @@ public class Constant {
     public static final String LOGIN = HOME + "/login";
     public static final String REGISTER = HOME + "/register";
     public static final String USER_DATA = HOME + "/save";
+    public static final String POSTS = HOME + "/posts";
+    public static final String POST = POSTS + "/create";
 }
