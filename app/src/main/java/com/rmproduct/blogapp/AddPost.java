@@ -10,6 +10,7 @@ import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -178,5 +179,9 @@ public class AddPost extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void goBack(View view) {
+        super.onBackPressed();
     }
 }

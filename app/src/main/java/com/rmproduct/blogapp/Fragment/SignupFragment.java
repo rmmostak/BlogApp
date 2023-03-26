@@ -107,6 +107,7 @@ public class SignupFragment extends Fragment {
                 JSONObject object = new JSONObject(response);
                 if (object.getBoolean("success")) {
                     JSONObject user = object.getJSONObject("user");
+                    localStorage.setId(user.getInt("id"));
                     localStorage.setName(user.getString("name"));
                     localStorage.setLastname(user.getString("lastname"));
                     localStorage.setPhoto(user.getString("photo"));

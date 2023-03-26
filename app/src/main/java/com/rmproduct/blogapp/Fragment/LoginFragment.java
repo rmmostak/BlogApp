@@ -103,6 +103,7 @@ public class LoginFragment extends Fragment {
                 if (object.getBoolean("success")) {
                     JSONObject user = object.getJSONObject("user");
                     localStorage.setName(user.getString("name"));
+                    localStorage.setId(user.getInt("id"));
                     localStorage.setLastname(user.getString("lastname"));
                     localStorage.setPhoto(user.getString("photo"));
                     localStorage.setToken(object.getString("token"));
