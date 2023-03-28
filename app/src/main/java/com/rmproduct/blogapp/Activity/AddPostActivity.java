@@ -1,4 +1,4 @@
-package com.rmproduct.blogapp;
+package com.rmproduct.blogapp.Activity;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
@@ -28,8 +28,9 @@ import com.android.volley.toolbox.Volley;
 import com.rmproduct.blogapp.Fragment.HomeFragment;
 import com.rmproduct.blogapp.Models.Post;
 import com.rmproduct.blogapp.Models.User;
-import com.rmproduct.blogapp.common.Constant;
-import com.rmproduct.blogapp.common.LocalStorage;
+import com.rmproduct.blogapp.R;
+import com.rmproduct.blogapp.Common.Constant;
+import com.rmproduct.blogapp.Common.LocalStorage;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,7 +40,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AddPost extends AppCompatActivity {
+public class AddPostActivity extends AppCompatActivity {
 
     private Button post;
     private EditText postDesc;
@@ -59,8 +60,8 @@ public class AddPost extends AppCompatActivity {
         postImg = findViewById(R.id.postAddImg);
         postDesc = findViewById(R.id.postDesc);
         post = findViewById(R.id.post);
-        localStorage = new LocalStorage(AddPost.this);
-        dialog = new ProgressDialog(AddPost.this);
+        localStorage = new LocalStorage(AddPostActivity.this);
+        dialog = new ProgressDialog(AddPostActivity.this);
 
         dialog.setTitle("Please wait...");
         dialog.setCancelable(true);
@@ -117,12 +118,12 @@ public class AddPost extends AppCompatActivity {
 
                     Log.d("AddPost", "JSONObject Called.");
                     dialog.dismiss();
-                    startActivity(new Intent(AddPost.this, HomeActivity.class));
+                    startActivity(new Intent(AddPostActivity.this, HomeActivity.class));
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
                 dialog.dismiss();
-                Toast.makeText(AddPost.this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(AddPostActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
             }
 
         }, error -> {
@@ -146,7 +147,7 @@ public class AddPost extends AppCompatActivity {
                 return map;
             }
         };
-        RequestQueue queue = Volley.newRequestQueue(AddPost.this);
+        RequestQueue queue = Volley.newRequestQueue(AddPostActivity.this);
         queue.add(request);
     }
 

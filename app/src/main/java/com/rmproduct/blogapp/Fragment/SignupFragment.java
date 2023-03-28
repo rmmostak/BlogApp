@@ -22,9 +22,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputEditText;
 import com.rmproduct.blogapp.R;
-import com.rmproduct.blogapp.UserInfo;
-import com.rmproduct.blogapp.common.Constant;
-import com.rmproduct.blogapp.common.LocalStorage;
+import com.rmproduct.blogapp.Activity.UserInfoActivity;
+import com.rmproduct.blogapp.Common.Constant;
+import com.rmproduct.blogapp.Common.LocalStorage;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -116,7 +116,7 @@ public class SignupFragment extends Fragment {
                     dialog.dismiss();
                     Log.d("SignupFrag", "JSONObject Called.");
                     Toast.makeText(getActivity(), "Registration success! Login now.", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(getActivity(), UserInfo.class));
+                    startActivity(new Intent(getActivity(), UserInfoActivity.class));
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

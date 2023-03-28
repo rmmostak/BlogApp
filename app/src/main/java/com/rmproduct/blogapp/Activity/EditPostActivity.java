@@ -1,8 +1,7 @@
-package com.rmproduct.blogapp;
+package com.rmproduct.blogapp.Activity;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -20,8 +19,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.rmproduct.blogapp.Fragment.HomeFragment;
 import com.rmproduct.blogapp.Models.Post;
-import com.rmproduct.blogapp.common.Constant;
-import com.rmproduct.blogapp.common.LocalStorage;
+import com.rmproduct.blogapp.R;
+import com.rmproduct.blogapp.Common.Constant;
+import com.rmproduct.blogapp.Common.LocalStorage;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,7 +29,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class EditPost extends AppCompatActivity {
+public class EditPostActivity extends AppCompatActivity {
 
     int postId = 0, position = 0;
     private EditText editDesc;
@@ -44,10 +44,10 @@ public class EditPost extends AppCompatActivity {
 
         editDesc = findViewById(R.id.editDesc);
         editPost = findViewById(R.id.editPost);
-        dialog = new ProgressDialog(EditPost.this);
+        dialog = new ProgressDialog(EditPostActivity.this);
         dialog.setTitle("Updating...");
         dialog.setCancelable(true);
-        localStorage = new LocalStorage(EditPost.this);
+        localStorage = new LocalStorage(EditPostActivity.this);
 
         postId = getIntent().getIntExtra("postId", 0);
         position = getIntent().getIntExtra("position", 0);
@@ -78,12 +78,12 @@ public class EditPost extends AppCompatActivity {
                     HomeFragment.recyclerView.getAdapter().notifyDataSetChanged();
                     finish();
                 } else {
-                    Toast.makeText(EditPost.this, object.getString("message"), Toast.LENGTH_LONG).show();
+                    Toast.makeText(EditPostActivity.this, object.getString("message"), Toast.LENGTH_LONG).show();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
                 dialog.dismiss();
-                Toast.makeText(EditPost.this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(EditPostActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
             }
 
         }, error -> {
@@ -107,7 +107,7 @@ public class EditPost extends AppCompatActivity {
                 return map;
             }
         };
-        RequestQueue queue = Volley.newRequestQueue(EditPost.this);
+        RequestQueue queue = Volley.newRequestQueue(EditPostActivity.this);
         queue.add(request);
     }
 

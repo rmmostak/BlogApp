@@ -1,4 +1,4 @@
-package com.rmproduct.blogapp.common;
+package com.rmproduct.blogapp.Common;
 
 import android.content.Context;
 import android.content.SharedPreferences;

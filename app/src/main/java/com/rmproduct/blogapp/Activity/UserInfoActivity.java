@@ -1,4 +1,4 @@
-package com.rmproduct.blogapp;
+package com.rmproduct.blogapp.Activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -9,6 +9,7 @@ import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,8 +23,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputEditText;
-import com.rmproduct.blogapp.common.Constant;
-import com.rmproduct.blogapp.common.LocalStorage;
+import com.rmproduct.blogapp.R;
+import com.rmproduct.blogapp.Common.Constant;
+import com.rmproduct.blogapp.Common.LocalStorage;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,7 +37,7 @@ import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class UserInfo extends AppCompatActivity {
+public class UserInfoActivity extends AppCompatActivity {
 
     private TextView choosePic;
     private CircleImageView pPic;
@@ -56,8 +58,8 @@ public class UserInfo extends AppCompatActivity {
         name = findViewById(R.id.name);
         lastName = findViewById(R.id.lastName);
         cont = findViewById(R.id.cont);
-        localStorage = new LocalStorage(UserInfo.this);
-        dialog = new ProgressDialog(UserInfo.this);
+        localStorage = new LocalStorage(UserInfoActivity.this);
+        dialog = new ProgressDialog(UserInfoActivity.this);
         dialog.setTitle("Loading...");
         dialog.setCancelable(false);
 
@@ -98,13 +100,13 @@ public class UserInfo extends AppCompatActivity {
                     dialog.dismiss();
                     localStorage.setPhoto(object.getString("photo"));
                     Log.d("UserInfo", "JSONObject Called.");
-                    Toast.makeText(UserInfo.this, "Registration success! Login now.", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(UserInfo.this, HomeActivity.class));
+                    Toast.makeText(UserInfoActivity.this, "Registration success! Login now.", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(UserInfoActivity.this, HomeActivity.class));
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
                 dialog.dismiss();
-                Toast.makeText(UserInfo.this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(UserInfoActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
             }
 
         }, error -> {
@@ -130,7 +132,7 @@ public class UserInfo extends AppCompatActivity {
             }
         };
 
-        RequestQueue queue = Volley.newRequestQueue(UserInfo.this);
+        RequestQueue queue = Volley.newRequestQueue(UserInfoActivity.this);
         queue.add(request);
     }
 
@@ -156,8 +158,12 @@ public class UserInfo extends AppCompatActivity {
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imgUri);
             } catch (IOException e) {
                 e.printStackTrace();
-                Toast.makeText(UserInfo.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(UserInfoActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+    public void goBack(View view) {
+        super.onBackPressed();
     }
 }

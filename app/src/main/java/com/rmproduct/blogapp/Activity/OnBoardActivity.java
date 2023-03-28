@@ -1,4 +1,4 @@
-package com.rmproduct.blogapp;
+package com.rmproduct.blogapp.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.rmproduct.blogapp.Adapter.ViewPagerAdapter;
+import com.rmproduct.blogapp.R;
 
 public class OnBoardActivity extends AppCompatActivity {
 

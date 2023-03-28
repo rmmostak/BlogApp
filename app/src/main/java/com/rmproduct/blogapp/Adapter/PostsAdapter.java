@@ -26,13 +26,13 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.rmproduct.blogapp.CommentActivity;
-import com.rmproduct.blogapp.EditPost;
-import com.rmproduct.blogapp.HomeActivity;
+import com.rmproduct.blogapp.Activity.CommentActivity;
+import com.rmproduct.blogapp.Activity.EditPostActivity;
+import com.rmproduct.blogapp.Activity.HomeActivity;
 import com.rmproduct.blogapp.Models.Post;
 import com.rmproduct.blogapp.R;
-import com.rmproduct.blogapp.common.Constant;
-import com.rmproduct.blogapp.common.LocalStorage;
+import com.rmproduct.blogapp.Common.Constant;
+import com.rmproduct.blogapp.Common.LocalStorage;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -135,12 +135,14 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostsHolder>
         holder.postComment.setOnClickListener(view -> {
             Intent intent=new Intent(context, CommentActivity.class);
             intent.putExtra("postId", post.getId());
+            intent.putExtra("postPosition", position);
             context.startActivity(intent);
         });
 
         holder.postCommentView.setOnClickListener(view -> {
             Intent intent=new Intent(context, CommentActivity.class);
             intent.putExtra("postId", post.getId());
+            intent.putExtra("postPosition", position);
             context.startActivity(intent);
         });
 
@@ -152,7 +154,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostsHolder>
                 public boolean onMenuItemClick(MenuItem menuItem) {
                     switch (menuItem.getItemId()) {
                         case R.id.menuPostEdit: {
-                            Intent intent = new Intent(((HomeActivity) context), EditPost.class);
+                            Intent intent = new Intent(((HomeActivity) context), EditPostActivity.class);
                             intent.putExtra("postId", post.getId());
                             intent.putExtra("position", holder.getAbsoluteAdapterPosition());
                             intent.putExtra("text", post.getDesc());

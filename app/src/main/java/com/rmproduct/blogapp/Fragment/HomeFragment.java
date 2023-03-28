@@ -25,12 +25,12 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.rmproduct.blogapp.Adapter.PostsAdapter;
-import com.rmproduct.blogapp.HomeActivity;
+import com.rmproduct.blogapp.Activity.HomeActivity;
 import com.rmproduct.blogapp.Models.Post;
 import com.rmproduct.blogapp.Models.User;
 import com.rmproduct.blogapp.R;
-import com.rmproduct.blogapp.common.Constant;
-import com.rmproduct.blogapp.common.LocalStorage;
+import com.rmproduct.blogapp.Common.Constant;
+import com.rmproduct.blogapp.Common.LocalStorage;
 
 import org.json.JSONArray;
 import org.json.JSONException;

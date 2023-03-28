@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".Activity.UserInfoActivity">
+    tools:context=".Activity.EditUserActivity">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:layout_width="match_parent"
@@ -26,7 +26,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="User Information"
+            android:text="Edit User Info"
             android:textColor="@color/black"
             android:textSize="18sp" />
 
@@ -37,30 +37,29 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:gravity="center"
-        android:padding="10dp"
         android:orientation="vertical">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/pPic"
+            android:id="@+id/editPic"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
             android:src="@mipmap/ic_launcher" />
 
         <TextView
-            android:id="@+id/choosePic"
+            android:id="@+id/editChoosePic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:fontFamily="@font/baumans"
             android:padding="10dp"
-            android:textSize="16sp"
-            android:textColor="@color/colorPrimary"
             android:text="Choose photo..."
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp" />
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/name"
+            android:id="@+id/editName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/baumans"
@@ -69,7 +68,7 @@
             android:padding="15dp" />
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/lastName"
+            android:id="@+id/editLastName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/baumans"
@@ -78,13 +77,13 @@
             android:padding="15dp" />
 
         <Button
-            android:id="@+id/cont"
+            android:id="@+id/editSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/baumans"
-            android:text="Continue"
+            android:text="Save"
             android:textAllCaps="false" />
 
     </LinearLayout>
