@@ -45,15 +45,15 @@
         android:layout_alignParentBottom="true"
         android:gravity="center"
         android:padding="5dp"
-        android:background="@drawable/comment_rect"
         android:orientation="horizontal">
 
         <EditText
             android:id="@+id/comment"
             android:layout_width="0dp"
+            android:background="@drawable/comment_rect"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:padding="5dp"
+            android:padding="10dp"
             android:layout_weight="1"
             android:hint="Write something..."
             android:layout_marginLeft="5dp"
@@ -63,8 +63,8 @@
 
         <ImageButton
             android:id="@+id/postComment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_margin="4dp"
             android:background="@android:color/transparent"
             android:src="@drawable/ic_send"

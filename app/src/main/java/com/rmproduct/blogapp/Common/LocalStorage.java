@@ -7,7 +7,7 @@ public class LocalStorage {
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
     Context context;
-    String name, lastname, photo, token;
+    String name, lastname, photo, token, email;
     int id;
     boolean login;
 
@@ -81,5 +81,16 @@ public class LocalStorage {
         editor.putBoolean("LOGIN", login);
         editor.commit();
         this.login = login;
+    }
+
+    public String getEmail() {
+        email = preferences.getString("EMAIL", "");
+        return email;
+    }
+
+    public void setEmail(String email) {
+        editor.putString("EMAIL", email);
+        editor.commit();
+        this.email = email;
     }
 }

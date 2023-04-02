@@ -97,10 +97,12 @@ public class UserInfoActivity extends AppCompatActivity {
             try {
                 JSONObject object = new JSONObject(response);
                 if (object.getBoolean("success")) {
+                    JSONObject user = object.getJSONObject("photo");
+                    localStorage.setName(user.getString("name"));
+                    localStorage.setLastname(user.getString("lastname"));
+                    localStorage.setPhoto(user.getString("photo"));
                     dialog.dismiss();
-                    localStorage.setPhoto(object.getString("photo"));
                     Log.d("UserInfo", "JSONObject Called.");
-                    Toast.makeText(UserInfoActivity.this, "Registration success! Login now.", Toast.LENGTH_LONG).show();
                     startActivity(new Intent(UserInfoActivity.this, HomeActivity.class));
                 }
             } catch (JSONException e) {

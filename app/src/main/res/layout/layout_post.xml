@@ -84,53 +84,78 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp"
+            android:weightSum="2"
+            android:padding="10dp"
+            android:background="#F6F6F6"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/postLike"
-                android:layout_width="wrap_content"
-                android:tooltipText="Post Like"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginRight="12dp"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_love_out" />
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/postComment"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/postLikeCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/baumans"
+                    android:gravity="center"
+                    android:paddingRight="5dp"
+                    android:text="17"
+                    android:textColor="@color/colorGrey"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/postLike"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="12dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_love_out"
+                    android:tooltipText="Post Like" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:tooltipText="Post Comment"
-                android:layout_gravity="center_vertical"
-                android:layout_marginRight="12dp"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_comment" />
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorGrey" />
+
+                <TextView
+                    android:id="@+id/postCommentView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="12dp"
+                    android:fontFamily="@font/baumans"
+                    android:gravity="center"
+                    android:paddingRight="5dp"
+                    android:text="2"
+                    android:textColor="@color/colorLightGrey"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/postComment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="12dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_comment"
+                    android:tooltipText="Post Comment" />
+
+            </LinearLayout>
 
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/postLikeCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
-            android:fontFamily="@font/baumans"
-            android:text="17 Likes"
-            android:textColor="@color/colorGrey"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/postCommentView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="20dp"
-            android:fontFamily="@font/baumans"
-            android:text="View all comment"
-            android:textColor="@color/colorLightGrey" />
 
         <View
             android:layout_width="match_parent"

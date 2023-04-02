@@ -1,7 +1,8 @@
 package com.rmproduct.blogapp.Common;
 
 public class Constant {
-    public static final String URL = "http://192.168.0.106:8000/";
+    //public static final String URL = "http://192.168.0.106:8000/";
+    public static final String URL = "https://theme.e-palli.com/";
     public static final String HOME = URL + "api";
     public static final String LOGIN = HOME + "/login";
     public static final String LOGOUT = HOME + "/logout";

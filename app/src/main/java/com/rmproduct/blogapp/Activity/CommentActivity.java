@@ -19,13 +19,13 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.rmproduct.blogapp.Adapter.CommentAdapter;
+import com.rmproduct.blogapp.Common.Constant;
+import com.rmproduct.blogapp.Common.LocalStorage;
 import com.rmproduct.blogapp.Fragment.HomeFragment;
 import com.rmproduct.blogapp.Models.Comment;
 import com.rmproduct.blogapp.Models.Post;
 import com.rmproduct.blogapp.Models.User;
 import com.rmproduct.blogapp.R;
-import com.rmproduct.blogapp.Common.Constant;
-import com.rmproduct.blogapp.Common.LocalStorage;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -70,6 +70,7 @@ public class CommentActivity extends AppCompatActivity {
             if (!TextUtils.isEmpty(comments)) {
                 createComment(comments, postId);
             } else {
+                dialog.dismiss();
                 commentText.setError("Write something.");
                 commentText.requestFocus();
                 return;

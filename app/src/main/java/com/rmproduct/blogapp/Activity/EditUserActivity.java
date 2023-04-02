@@ -40,7 +40,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class EditUserActivity extends AppCompatActivity {
 
-    private TextView editChoosePic;
+    private TextView editChoosePic, editEmail;
     private CircleImageView editPic;
     private TextInputEditText editName, editLastName;
     private Button editSave;
@@ -55,6 +55,7 @@ public class EditUserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_user);
 
         editChoosePic = findViewById(R.id.editChoosePic);
+        editEmail = findViewById(R.id.editEmail);
         editPic = findViewById(R.id.editPic);
         editName = findViewById(R.id.editName);
         editLastName = findViewById(R.id.editLastName);
@@ -64,9 +65,11 @@ public class EditUserActivity extends AppCompatActivity {
         dialog.setTitle("Loading...");
         dialog.setCancelable(false);
 
-        Picasso.get().load(Constant.URL+"storage/profiles/"+localStorage.getPhoto()).into(editPic);
+        Picasso.get().load(Constant.URL + "storage/profiles/" + localStorage.getPhoto()).into(editPic);
+        Log.d("ProfilePicture", Constant.URL + "storage/profiles/" + localStorage.getPhoto());
         editName.setText(localStorage.getName());
         editLastName.setText(localStorage.getLastname());
+        editEmail.setText(localStorage.getEmail());
 
         editChoosePic.setOnClickListener(view -> {
             Intent intent = new Intent(Intent.ACTION_PICK);
@@ -102,11 +105,12 @@ public class EditUserActivity extends AppCompatActivity {
             try {
                 JSONObject object = new JSONObject(response);
                 if (object.getBoolean("success")) {
-                    localStorage.setName(name);
-                    localStorage.setLastname(lastName);
+                    JSONObject user = object.getJSONObject("photo");
+                    localStorage.setName(user.getString("name"));
+                    localStorage.setLastname(user.getString("lastname"));
+                    localStorage.setPhoto(user.getString("photo"));
                     dialog.dismiss();
                     Log.d("UserInfo", "JSONObject Called.");
-                    Toast.makeText(EditUserActivity.this, "Registration success! Login now.", Toast.LENGTH_LONG).show();
                     startActivity(new Intent(EditUserActivity.this, HomeActivity.class));
                 }
             } catch (JSONException e) {

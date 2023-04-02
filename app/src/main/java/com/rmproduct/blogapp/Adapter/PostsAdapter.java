@@ -29,10 +29,10 @@ import com.android.volley.toolbox.Volley;
 import com.rmproduct.blogapp.Activity.CommentActivity;
 import com.rmproduct.blogapp.Activity.EditPostActivity;
 import com.rmproduct.blogapp.Activity.HomeActivity;
-import com.rmproduct.blogapp.Models.Post;
-import com.rmproduct.blogapp.R;
 import com.rmproduct.blogapp.Common.Constant;
 import com.rmproduct.blogapp.Common.LocalStorage;
+import com.rmproduct.blogapp.Models.Post;
+import com.rmproduct.blogapp.R;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -70,11 +70,20 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostsHolder>
         Post post = postList.get(position);
         Picasso.get().load(Constant.URL + "storage/profiles/" + post.getUser().getPhoto()).into(holder.imgPoster);
         Picasso.get().load(Constant.URL + "storage/posts/" + post.getPhoto()).into(holder.postImg);
+
         holder.postName.setText(post.getUser().getUsername());
         holder.postDate.setText(post.getDate());
         holder.postDesc.setText(post.getDesc());
-        holder.postLikeCount.setText(post.getLike() + " Likes");
-        holder.postCommentView.setText("View all " + post.getComment());
+        if (post.getLike() < 1) {
+            holder.postLikeCount.setVisibility(View.GONE);
+        } else {
+            holder.postLikeCount.setText(post.getLike() + "");
+        }
+        if (post.getComment() < 1) {
+            holder.postLikeCount.setVisibility(View.GONE);
+        } else {
+            holder.postCommentView.setText("" + post.getComment());
+        }
 
         if (post.getUser().getId() == localStorage.getId()) {
             holder.postOption.setVisibility(View.VISIBLE);
@@ -247,20 +256,25 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostsHolder>
     Filter filter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence charSequence) {
-            ArrayList<Post> filteredList = new ArrayList<>();
-            if (charSequence.toString().isEmpty()) {
-                filteredList.addAll(postAll);
-            } else {
-                for (Post post : postAll) {
-                    if (post.getDesc().toLowerCase().contains(charSequence.toString().toLowerCase()) || post.getUser().getUsername().toLowerCase().contains(charSequence.toString().toLowerCase())) {
-                        filteredList.add(post);
+            if (postAll.size() > 0) {
+                ArrayList<Post> filteredList = new ArrayList<>();
+                if (charSequence.toString().isEmpty()) {
+                    filteredList.addAll(postAll);
+                } else {
+                    for (Post post : postAll) {
+                        if (post.getDesc().toLowerCase().contains(charSequence.toString().toLowerCase()) || post.getUser().getUsername().toLowerCase().contains(charSequence.toString().toLowerCase())) {
+                            filteredList.add(post);
+                        }
                     }
                 }
-            }
-            FilterResults results = new FilterResults();
-            results.values = filteredList;
+                FilterResults results = new FilterResults();
+                results.values = filteredList;
 
-            return results;
+                return results;
+            } else {
+                return null;
+            }
+
         }
 
         @Override

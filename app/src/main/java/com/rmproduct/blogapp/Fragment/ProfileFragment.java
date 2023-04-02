@@ -185,10 +185,12 @@ public class ProfileFragment extends Fragment {
                 JSONObject object = new JSONObject(response);
                 if (object.getBoolean("success")) {
                     localStorage.setToken("");
+                    localStorage.setEmail("");
                     localStorage.setLogin(false);
                     localStorage.setLastname("");
                     localStorage.setName("");
                     localStorage.setPhoto("");
+                    localStorage.setId(0);
                     dialog.dismiss();
                     startActivity(new Intent(getContext(), AuthActivity.class));
                 } else {
